@@ -10,9 +10,8 @@ get '/' do
 end
 
 get '/chapters/:num' do |num|
-  @title = 'The Adventures of Sherlock Holmes'
-  @chapter_title = "Chapter #{num}"
   @contents = File.readlines('data/toc.txt', chomp: true)
+  @title = "Chapter #{num}: #{@contents[num.to_i - 1]}"
   @chapter = File.read("data/chp#{num}.txt")
 
   erb :chapter
