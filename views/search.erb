@@ -4,3 +4,19 @@
   <input name="query" value="<%= params[:query] %>">
   <input type="submit" value="Search">
 </form>
+
+<h2 class="content-subhead">
+  <% if params[:query].nil? %>
+  Search for a chapter title
+  <% elsif search(params[:query]).size == 0 %>
+  Sorry, no matches were found
+  <% else %>
+  Results for '<%= params[:query] %>'
+  <% end %>
+</h2>
+
+<ul>
+  <% search(params[:query]).each do |result| %>
+  <li><a href="/chapters/<%= index(result) + 1 %>"><%= result %></a></li>
+  <% end %>
+</ul>
