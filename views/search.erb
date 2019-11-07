@@ -8,7 +8,7 @@
 <h2 class="content-subhead">
   <% if params[:query].nil? %>
   Search for a chapter title
-  <% elsif search(params[:query]).size == 0 %>
+  <% elsif @results.empty? %>
   Sorry, no matches were found
   <% else %>
   Results for '<%= params[:query] %>'
@@ -16,7 +16,7 @@
 </h2>
 
 <ul>
-  <% search(params[:query]).each do |result| %>
-  <li><a href="/chapters/<%= index(result) + 1 %>"><%= result %></a></li>
+  <% @results.each do |result| %>
+  <li><strong><%= result %></strong></li>
   <% end %>
 </ul>

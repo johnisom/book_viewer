@@ -11,11 +11,7 @@ helpers do
 
   def search(query)
     return [] if query.nil? || query == ''
-    @contents.select { |title| title =~ /#{query}/ }
-  end
-
-  def index(title)
-    @contents.index(title)
+    @contents.select { |title| title =~ /#{query}/i }
   end
 end
 
@@ -41,6 +37,7 @@ get '/chapters/:num' do |num|
 end
 
 get '/search/?' do
+  @results = search(params[:query])
   erb :search
 end
 
