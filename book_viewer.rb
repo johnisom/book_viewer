@@ -31,6 +31,10 @@ get '/chapters/:num' do |num|
   erb :chapter
 end
 
+get '/search/?' do
+  erb :search
+end
+
 not_found do
   redirect '/'
 end
