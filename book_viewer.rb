@@ -8,6 +8,15 @@ helpers do
       "<p>#{paragraph}</p>"
     end.join
   end
+
+  def search(query)
+    return [] if query.nil? || query == ''
+    @contents.select { |title| title =~ /#{query}/ }
+  end
+
+  def index(title)
+    @contents.index(title)
+  end
 end
 
 before do
