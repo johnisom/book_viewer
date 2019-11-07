@@ -17,6 +17,17 @@
 
 <ul>
   <% @results.each do |result| %>
-  <li><strong><%= result %></strong></li>
+  <li>
+    <strong><%= result[:title] %></strong>
+    <ul>
+      <% result[:mapped_content].each do |paragraph, id| %>
+      <li>
+        <a href="/chapters/<%= result[:num] %>#<%= id %>">
+          <%= paragraph %>
+        </a>
+      </li>
+      <% end %>
+    </ul>
+  </li>
   <% end %>
 </ul>
