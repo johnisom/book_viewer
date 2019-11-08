@@ -17,9 +17,16 @@ def each_chapter
 end
 
 def filter_content(mapped_content, query)
-  mapped_content.filter do |paragraph, _id|
+  filtered = mapped_content.filter do |paragraph, _id|
     paragraph.include?(query)
   end
+  filtered.map do |paragraph, id|
+    [insert_strong(paragraph, query), id]
+  end
+end
+
+def insert_strong(paragraph, query)
+  paragraph.split(query).join("<strong>#{query}</strong>")
 end
 
 def search(query)
@@ -27,7 +34,7 @@ def search(query)
 
   results = []
   each_chapter do |num, title, mapped_content|
-    filtered = filter_content(mapped_content, query)
+    filtered = filter_content(mapped_content, query.downcase)
     unless filtered.empty?
       results << { num: num, title: title, mapped_content: filtered }
     end

@@ -18,7 +18,7 @@
 <ul>
   <% @results.each do |result| %>
   <li>
-    <strong><%= result[:title] %></strong>
+    <h4><%= result[:title] %></h4>
     <ul>
       <% result[:mapped_content].each do |paragraph, id| %>
       <li>
