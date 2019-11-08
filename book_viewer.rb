@@ -43,7 +43,8 @@ helpers do
   end
 
   def highlight(text, to_highlight)
-    text.gsub(to_highlight, "<strong>#{to_highlight}</strong>")
+    to_highlight.downcase!
+    text.gsub(/#{to_highlight}/i, "<strong>#{to_highlight}</strong>")
   end
 end
 
