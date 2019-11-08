@@ -17,16 +17,9 @@ def each_chapter
 end
 
 def filter_content(mapped_content, query)
-  filtered = mapped_content.filter do |paragraph, _id|
+  mapped_content.filter do |paragraph, _id|
     paragraph.include?(query)
   end
-  filtered.map do |paragraph, id|
-    [insert_strong(paragraph, query), id]
-  end
-end
-
-def insert_strong(paragraph, query)
-  paragraph.split(query).join("<strong>#{query}</strong>")
 end
 
 def search(query)
@@ -47,6 +40,10 @@ helpers do
     chapter_text.split("\n\n").map.with_index do |paragraph, idx|
       %(<p id="paragraph-#{idx + 1}">#{paragraph}</p>)
     end.join
+  end
+
+  def highlight(text, to_highlight)
+    text.gsub(to_highlight, "<strong>#{to_highlight}</strong>")
   end
 end
 

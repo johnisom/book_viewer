@@ -23,7 +23,7 @@
       <% result[:mapped_content].each do |paragraph, id| %>
       <li>
         <a href="/chapters/<%= result[:num] %>#<%= id %>">
-          <%= paragraph %>
+          <%= highlight(paragraph, params[:query]) %>
         </a>
       </li>
       <% end %>
